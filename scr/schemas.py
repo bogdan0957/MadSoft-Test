@@ -6,6 +6,8 @@ class MemesCreate(BaseModel):
     meme: str
     description: str
 
+
 class MemesUpdate(BaseModel):
     meme: str
     description: str
+
