@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  db:
+    restart: always
+    image: postgres:15
+    container_name: db_app
+    env_file:
+      - .env-nodev
+    ports:
+      - 5432:5432
+
+  app:
+    build:
+      context: .
+    container_name: fastapi_app
+    ports:
+      - 9999:8000
+    depends_on:
+      - db
+    command: ["/fastapi_app/docker/app.sh"]
+    restart: always
+    env_file:
+      - .env-nodev
